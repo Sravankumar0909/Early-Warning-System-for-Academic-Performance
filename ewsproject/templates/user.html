@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <title>Attendance and Subjects</title>
+    <style>
+        /* Your CSS styles here */
+		body {
+            background: #1868ae;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .container {
+            min-height: 100vh; /* Minimum height of the viewport */
+            display: flex;
+            flex-direction: column;
+        }
+				
+        .heading {
+            height: 100px;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .loginform {
+            flex: 1; /* Take up remaining vertical space */
+            margin: 3% auto;
+            width: 1000px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px 0px #000;
+            padding: 20px;
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .ltb {
+            position: relative;
+            left: 40px;
+            padding-top: 25px;
+            padding-left: 25px;
+            font-size: 25px;
+        }
+
+        table {
+            border-spacing: 10px;
+            position: relative;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        tr {
+            margin-bottom: 40px;
+        }
+
+        .input {
+            border-radius: 8px;
+            height: 30px;
+            width: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .lab {
+            font-size: 18px;
+        }
+
+        .btn {
+            border-radius: 8px;
+            height: 40px;
+            width: 200px;
+            background: #1e2761;
+            color: white;
+            cursor: pointer;
+            display: block;
+            margin: 10px 0;
+        }
+
+        .subject-file {
+            display: block;
+            margin-top: 10px;
+        }
+
+        #subject-container {
+            position: relative;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .logout-btn 
+        {
+            height: 40px;
+            width: 100px;
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background-color: #ffffff; /* Customize the button's appearance */
+            color: #000;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1 class="heading">Attendance and Subjects</h1>
+    <form id="myForm" method="post" enctype="multipart/form-data" action="predict">
+        {% csrf_token %}
+        <div class="loginform">
+            <div class="first-half">
+                <!--<h3 class="ltb"> Login to continue </h3>-->
+                <table>
+                    <tr>
+                        <td><label for="attendance_file" class="lab">Attendance File (CSV only):</label></td>
+                        <td><input type="file" name="attendance_file" id="attendance_file" class="input" accept=".csv" required></td>
+                    </tr>
+                    <tr>
+                        <td ><label for="subject_files" class="lab">Subject Files (CSV only):</label></td>
+                        <td style="text-align: center;">
+                            <div id="subject-container">
+                                <input type="file" name="subject_files" class="subject-file" accept=".csv" required>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button type="button" onclick="addSubjectInput()" class="btn">Add More Subjects</button></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button type="submit" class="btn">Submit</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <button type="button" onclick="logout()" class="logout-btn">Logout</button>
+    </form>
+
+    <script>
+        function addSubjectInput() {
+            const container = document.getElementById('subject-container');
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.name = 'subject_files';
+            input.className = 'subject-file';
+            input.accept = '.csv'; // Restrict to CSV files
+            container.appendChild(input);
+        }
+        function logout() {
+            const form = document.getElementById('myForm');
+            form.action = "{% url 'logout' %}"; // Set the form's action to the logout URL
+            form.submit(); // Submit the form
+        }
+        
+    </script>
+</body>
+</html>

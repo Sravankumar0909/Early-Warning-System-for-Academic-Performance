@@ -1,0 +1,55 @@
+{% block content %}
+<style>
+    /* Add your custom CSS styles here */
+    body {
+        background: #1868ae;
+        overflow-x: hidden; /* Hide horizontal overflow */
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Set the container to allow vertical scrolling */
+    .container {
+        overflow-y: auto;
+        overflow-x: auto; /* Allow horizontal scrolling */
+        height: 100vh;
+    }
+
+    .white-box {
+        background: #c6d7eb;
+        border-radius: 20px;
+        padding: 20px;
+        margin: 3% auto;
+        min-height: 480px;
+        width: auto; /* Let the box expand horizontally as needed */
+        max-width: 100%; /* Limit the width to the viewport width */
+    }
+
+    /* Add border-radius style to the button */
+    .btn-rounded {
+        border-radius: 8px;
+        height: 40px;
+        width: 200px;
+        background: #1e2761;
+        color: white;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        margin-top: 10px;
+    }
+
+    /* Add other styles from your provided HTML code */
+    /* ... (styles from your previous HTML code) ... */
+</style>
+
+<!-- Your HTML content goes here -->
+<div class="container">
+    <div class="white-box">
+        {{ predictions|safe }}
+        <form method="post" action="mail">
+            {% csrf_token %}
+            <input type="submit" value="Send Alerts" class="btn-rounded">
+        </form>
+    </div>
+</div>
+{% endblock %}

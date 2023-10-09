@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width">
+			<title>Welcome to Early Warning System for Academic Performance</title>
+			<style>
+				body
+				{
+					background:#1868ae; 
+					overflow:hidden;
+				}
+				.heading
+				{
+					height:100px; 
+					width:100%; 
+					background:#000000; 
+					display:flex;
+					justify-content:center;
+					align-items:center; 
+					color:#ffffff;
+				}
+				.loginform
+				{	
+					position:relative;
+					margin:3% auto;  
+					height:480px;
+					width:1000px; 
+					background:#1868ae;  
+				}
+				.ltb
+				{
+					position:relative;
+					left:40px;
+					padding-top:25px; 
+					padding-left:25px;  
+					font-size:25px;
+				}
+				
+				table
+				{
+					border-spacing:10px; 
+					position:relative;
+					top:-20px;
+					left:60px;
+				}
+				tr
+				{
+					margin-bottom:40px;
+				}
+				.input
+				{
+					border-radius:8px; 
+					height:30px;
+					width:200px;
+				}
+				.lab
+				{
+					font-size:18px;
+				}
+				.btn
+				{
+					border-radius:8px;
+					height:40px;
+					width:200px;
+					background:#1e2761;  
+					color:white; 
+					cursor:pointer;
+				}
+				.first-half, .second-half 
+				{
+					height:480px;
+					width:490px;
+					position:relative;
+					background:#c6d7eb;   
+					border-radius:20px;
+					float:left;
+					margin-right:10px;
+				}
+				.ftu, .rnfhc
+				{
+					position:relative;
+					top:-20px;
+					padding-left:65px;
+				}
+				.msg
+				{
+					position:relative;
+					padding-left:65px;
+					padding-top:40px;
+				}
+				a
+				{
+					text-decoration:none;
+				}
+			</style>
+		</head> 
+		<body>
+			
+			<form name="lform" method="post" action="login">
+				{% csrf_token %}
+			<div class="heading">
+				<h2> Welcome to Early Warning System for Academic Performance </h2>
+			</div>
+			<div class="loginform">
+				<div class="first-half">
+					<h3 class="ltb"> Login to continue </h3>
+						<table>
+							<tr>
+								<td><label for="custid" class="lab">Admin ID</label></td>
+								<td><input type="text" class="input" name="username"></td>
+							</tr>
+							<tr>
+								<td><label for="pwd" class="lab">Password</label></td>
+								<td><input type="password" class="input" name="password"></td>
+							</tr>
+							<tr></tr>
+							<tr>
+								<td></td>
+								<td><input type = "submit" class="btn" value="Login"></td>
+							</tr>
+						</table>
+				</div>
+				<div class="second-half">
+					<p class="msg">
+						Dear Customer,<br><br>
+						Welcome to the login page of
+						Early Warning System for Academic Performance.<br>
+						Its lighter look and feel is
+						designed to give you the best<br>
+						possible user experience.<br>
+						Please continue to login using your Admin ID <br>and password.<br><br><br>
+					</p>
+				</div>
+			</div>
+			</form>
+		</body>
+	</html>
